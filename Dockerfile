@@ -70,6 +70,7 @@ RUN useradd java && \
     apt-get update && \
     apt-get -y install --no-install-recommends unzip graphviz fonts-noto-cjk && \
     apt-get clean && \
+    rm -rf /var/lib/apt/lists/* && \
     mkdir /output && \
     chown -R java /output
 
