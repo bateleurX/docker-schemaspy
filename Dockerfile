@@ -37,13 +37,11 @@ COPY --from=download /download/schema*.jar /usr/local/lib/schemaspy/
 COPY --from=download /drivers_inc /drivers_inc
 COPY docker/schemaspy.sh /usr/local/bin/schemaspy
 
-ADD docker/open-sans.tar.gz /usr/share/fonts/
 
 RUN useradd java && \
     apt-get update && \
-    apt-get -y install unzip graphviz fontconfig && \
+    apt-get -y install --no-install-recommends unzip graphviz fonts-noto-cjk && \
     apt-get clean && \
-    fc-cache -fv && \
     mkdir /output && \
     chown -R java /output
 
