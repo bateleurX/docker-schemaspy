@@ -43,6 +43,7 @@ RUN useradd java && \
     apt-get update && \
     apt-get -y install unzip graphviz fontconfig && \
     apt-get clean && \
+    rm -rf /var/lib/apt/lists/* && \
     fc-cache -fv && \
     mkdir /output && \
     chown -R java /output
