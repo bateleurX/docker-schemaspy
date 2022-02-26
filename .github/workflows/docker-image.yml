@@ -1,12 +1,12 @@
 name: Build Docker images
 
-#on:
-#  release:
-#    types: [published]
+on:
+  release:
+    types: [published]
 
 # for debugging
-on:
-  push
+#on:
+#  push
 
 jobs:
   docker:
