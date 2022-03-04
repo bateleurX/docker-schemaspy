@@ -40,4 +40,4 @@ jobs:
         with:
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/schemaspy:6.1.0-cjk
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/schemaspy:6.1.0
