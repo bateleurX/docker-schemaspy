@@ -2,9 +2,9 @@ ARG GIT_BRANCH=local
 ARG GIT_REVISION=local
 
 ARG SCHEMASPY_VERSION=6.1.0
-ARG MYSQL_VERSION=8.0.28
+ARG MYSQL_VERSION=6.0.6
 ARG MARIADB_VERSION=1.1.10
-ARG POSTGRESQL_VERSION=42.2.25
+ARG POSTGRESQL_VERSION=42.1.1
 ARG JTDS_VERSION=1.3.1
 
 FROM curlimages/curl:latest AS download
@@ -68,7 +68,7 @@ COPY docker/schemaspy.sh /usr/local/bin/schemaspy
 
 RUN useradd java && \
     apt-get update && \
-    apt-get -y install --no-install-recommends unzip graphviz fonts-noto-cjk && \
+    apt-get -y install --no-install-recommends unzip graphviz && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     mkdir /output && \
