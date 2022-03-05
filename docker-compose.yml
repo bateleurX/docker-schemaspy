@@ -1,0 +1,33 @@
+version: "3.9"
+services:
+  schemaspy:
+    container_name: schemaspy
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+    - type: bind
+      source: output
+      target: /output
+    command: -t mysql -host mysql -u root -db sakila -s sakila -connprops useSSL\\=false
+    depends_on:
+      mysql:
+        condition: service_healthy
+  mysql:
+    container_name: mysql
+    image: mysql:8.0-oracle
+    restart: on-failure
+    environment:
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
+      MYSQL_DATABASE: sakila
+    volumes:
+      - type: bind
+        source: sakila
+        target: /docker-entrypoint-initdb.d
+    healthcheck:
+        test: "mysql sakila -uroot -h127.0.0.1 -e 'SELECT 1;'"
+        timeout: 10s
+        retries: 50
+    ports:
+      - "3306:3306"
