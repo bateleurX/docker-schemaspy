@@ -81,3 +81,48 @@ ENV SCHEMASPY_DRIVERS=/drivers
 ENV SCHEMASPY_OUTPUT=/output
 
 ENTRYPOINT ["/usr/local/bin/schemaspy"]
+
+FROM openjdk:8u322-jre-slim-bullseye AS cjk
+
+ARG GIT_BRANCH
+ARG GIT_REVISION
+
+ARG SCHEMASPY_VERSION
+ARG MYSQL_VERSION
+ARG MARIADB_VERSION
+ARG POSTGRESQL_VERSION
+ARG JTDS_VERSION
+
+ENV SCHEMASPY_VERSION=$SCHEMASPY_VERSION
+ENV MYSQL_VERSION=$MYSQL_VERSION
+ENV MARIADB_VERSION=$MARIADB_VERSION
+ENV POSTGRESQL_VERSION=$POSTGRESQL_VERSION
+ENV JTDS_VERSION=$JTDS_VERSION
+
+LABEL MYSQL_VERSION=$MYSQL_VERSION
+LABEL MARIADB_VERSION=$MARIADB_VERSION
+LABEL POSTGRESQL_VERSION=$POSTGRESQL_VERSION
+LABEL JTDS_VERSION=$JTDS_VERSION
+
+LABEL GIT_BRANCH=$GIT_BRANCH
+LABEL GIT_REVISION=$GIT_REVISION
+
+COPY --from=download /tmp/download/schema*.jar /usr/local/lib/schemaspy/
+COPY --from=download /tmp/drivers_inc /drivers_inc
+COPY docker/schemaspy.sh /usr/local/bin/schemaspy
+
+RUN useradd java && \
+    apt-get update && \
+    apt-get -y install --no-install-recommends unzip graphviz fonts-noto-cjk && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* && \
+    mkdir /output && \
+    chown -R java /output
+
+USER java
+WORKDIR /
+
+ENV SCHEMASPY_DRIVERS=/drivers
+ENV SCHEMASPY_OUTPUT=/output
+
+ENTRYPOINT ["/usr/local/bin/schemaspy"]
