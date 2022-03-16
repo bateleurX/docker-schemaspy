@@ -1,4 +1,7 @@
 # docker-schemaspy
+This repo has been forked from https://github.com/bateleurX/docker-schemaspy to allow schemaspy to run on macbooks with M1 processors.
+
+see issue https://github.com/schemaspy/schemaspy/issues/793#issuecomment-1059673363
 
 ## Getting started
 
