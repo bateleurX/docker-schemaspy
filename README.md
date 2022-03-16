@@ -1,19 +1,19 @@
 # docker-schemaspy
-schemaspy Dockerfile
 
-create a file schemaspy
+## Getting started
 
-# type of database. Run with -dbhelp for details
-schemaspy.t=psql11
-# optional path to alternative jdbc drivers.
-schemaspy.dp=path/to/drivers
-# database properties: host, port number, name user, password
-schemaspy.host=server
-schemaspy.port=1433
-schemaspy.db=db_name
-schemaspy.u=database_user
-schemaspy.p=database_password
-# output dir to save generated files
-schemaspy.o=path/to/output
-# db scheme for which generate diagrams
-schemaspy.s=dbo
+before building image create a file schemaspy.properties at the root ofdirectory
+
+    # type of database. use pgsql11 for posgres
+    schemaspy.t=<db type>
+    # database properties: host, port number, name user, password
+    schemaspy.host=<host>
+    schemaspy.port=<port>
+    schemaspy.db=<db>
+    schemaspy.u=<user>
+    schemaspy.p=<password>
+
+
+Run
+
+    docker-compose up --build
