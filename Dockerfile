@@ -2,9 +2,9 @@ ARG GIT_BRANCH=local
 ARG GIT_REVISION=local
 
 ARG SCHEMASPY_VERSION=6.1.0
-ARG MYSQL_VERSION=6.0.6
-ARG MARIADB_VERSION=1.1.10
-ARG POSTGRESQL_VERSION=42.1.1
+ARG MYSQL_VERSION=8.0.28
+ARG MARIADB_VERSION=3.0.3
+ARG POSTGRESQL_VERSION=42.3.3
 
 # Download files
 FROM curlimages/curl:latest AS download-mysql
@@ -20,7 +20,7 @@ ENV MYSQL_VERSION=$MYSQL_VERSION
 
 RUN mkdir -p /tmp/drivers_inc
 WORKDIR /tmp/drivers_inc
-RUN curl -JLO http://search.maven.org/remotecontent?filepath=mysql/mysql-connector-java/$MYSQL_VERSION/mysql-connector-java-$MYSQL_VERSION.jar
+RUN curl -JLO https://search.maven.org/remotecontent?filepath=mysql/mysql-connector-java/$MYSQL_VERSION/mysql-connector-java-$MYSQL_VERSION.jar
 
 FROM curlimages/curl:latest AS download-mariadb
 
@@ -35,7 +35,7 @@ ENV MARIADB_VERSION=$MARIADB_VERSION
 
 RUN mkdir -p /tmp/drivers_inc
 WORKDIR /tmp/drivers_inc
-RUN curl -JLO http://search.maven.org/remotecontent?filepath=org/mariadb/jdbc/mariadb-java-client/$MARIADB_VERSION/mariadb-java-client-$MARIADB_VERSION.jar
+RUN curl -JLO https://search.maven.org/remotecontent?filepath=org/mariadb/jdbc/mariadb-java-client/$MARIADB_VERSION/mariadb-java-client-$MARIADB_VERSION.jar
 
 FROM curlimages/curl:latest AS download-postgresql
 
@@ -50,7 +50,7 @@ ENV POSTGRESQL_VERSION=$POSTGRESQL_VERSION
 
 RUN mkdir -p /tmp/drivers_inc
 WORKDIR /tmp/drivers_inc
-RUN curl -JLO http://search.maven.org/remotecontent?filepath=org/postgresql/postgresql/$POSTGRESQL_VERSION.jre7/postgresql-$POSTGRESQL_VERSION.jre7.jar
+RUN curl -JLO https://search.maven.org/remotecontent?filepath=org/postgresql/postgresql/$POSTGRESQL_VERSION/postgresql-$POSTGRESQL_VERSION.jar
 
 FROM curlimages/curl:latest AS download-schemaspy
 
