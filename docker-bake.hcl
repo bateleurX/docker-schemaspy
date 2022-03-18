@@ -1,3 +1,7 @@
+variable "PREFIX" {
+    default = "docker.io"
+}
+
 target "base" {
     platforms = ["linux/amd64", "linux/arm64"]
 }
@@ -5,37 +9,37 @@ target "base" {
 target "mysql-nofont" {
     inherits = ["base"]
     target = "mysql"
-    tags = ["schemaspy-6.1.0-mysql"]
+    tags = ["${PREFIX}/schemaspy-6.1.0-mysql"]
 }
 
 target "mariadb-nofont" {
     inherits = ["base"]
     target = "mariadb"
-    tags = ["schemaspy-6.1.0-mariadb"]
+    tags = ["${PREFIX}/schemaspy-6.1.0-mariadb"]
 }
 
 target "postgresql-nofont" {
     inherits = ["base"]
     target = "postgresql"
-    tags = ["schemaspy-6.1.0-postgresql"]
+    tags = ["${PREFIX}/schemaspy-6.1.0-postgresql"]
 }
 
 target "mysql-cjk" {
     inherits = ["base"]
     target = "mysql-cjk"
-    tags = ["schemaspy-6.1.0-mysql-cjk"]
+    tags = ["${PREFIX}/schemaspy-6.1.0-mysql-cjk"]
 }
 
 target "mariadb-cjk" {
     inherits = ["base"]
     target = "mariadb-cjk"
-    tags = ["schemaspy-6.1.0-mariadb-cjk"]
+    tags = ["${PREFIX}/schemaspy-6.1.0-mariadb-cjk"]
 }
 
 target "postgresql-cjk" {
     inherits = ["base"]
     target = "postgresql-cjk"
-    tags = ["schemaspy-6.1.0-postgresql-cjk"]
+    tags = ["${PREFIX}/schemaspy-6.1.0-postgresql-cjk"]
 }
 
 group "mysql" {

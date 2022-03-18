@@ -8,6 +8,9 @@ on:
 #on:
 #  push
 
+env:
+  PREFIX: ${{ secrets.DOCKERHUB_USERNAME }}
+
 jobs:
   docker:
     runs-on: ubuntu-latest
