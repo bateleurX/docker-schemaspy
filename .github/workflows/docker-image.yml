@@ -9,7 +9,7 @@ on:
 #  push
 
 env:
-  PREFIX: "${{ secrets.DOCKERHUB_USERNAME }}/schemaspy"
+  PREFIX: ${{ secrets.DOCKERHUB_USERNAME }}
 
 jobs:
   docker:
