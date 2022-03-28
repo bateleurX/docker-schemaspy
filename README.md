@@ -19,4 +19,4 @@ before building image create a file schemaspy.properties at the root ofdirectory
 
 Run
 
-    docker-compose up --build
+    DB=<db> docker-compose up --build

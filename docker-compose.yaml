@@ -2,13 +2,23 @@
 version: "2"
 services:
   schemaspy:
-    container_name: schemaspy
-    network_mode: host
     build:
       context: .
       dockerfile: Dockerfile
+    environment:
+      - DB=${DB}
     volumes:
-    - type: bind
-      source: output
-      target: /output
+      - ./output/${DB}:/output
+    networks:
+      - ${DB}_default
+
+networks: 
+  groot_default:
+    external: true
+  gateway_default:
+    external: true
+  rocket_default:
+    external: true
+  heimdall_default:
+    external: true
       

@@ -81,14 +81,5 @@ USER java
 WORKDIR /
 
 ENV SCHEMASPY_DRIVERS=/drivers
-ENV SCHEMASPY_OUTPUT=/output
-
-ENTRYPOINT ["/usr/local/bin/schemaspy"]
-
-USER java
-WORKDIR /
-
-ENV SCHEMASPY_DRIVERS=/drivers
-ENV SCHEMASPY_OUTPUT=/output
 
 ENTRYPOINT ["/usr/local/bin/schemaspy"]
