@@ -7,6 +7,8 @@ see issue https://github.com/schemaspy/schemaspy/issues/793#issuecomment-1059673
 
 before building image create a file schemaspy.properties at the root ofdirectory
 
+make sure your service is running locally ina  container on your host
+
     # type of database. use pgsql11 for posgres
     schemaspy.t=<db type>
     # database properties: host, port number, name user, password
