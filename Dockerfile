@@ -95,4 +95,4 @@ RUN echo "SMOKE TESTS:" && \
     aws --version
 
 ENTRYPOINT [ "/usr/local/bin/schemaspy" ]
-CMD ["-t $DB_TYPE","-host $DB_HOST","-port $DB_PORT","-u $DB_USER","-p $DB_PASSWORD"]
+CMD ["-t $DB_TYPE","-host $DB_HOST","-port $DB_PORT"]
