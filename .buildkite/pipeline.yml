@@ -10,13 +10,13 @@ steps:
   - wait
 
   - label: ':docker: Build Docker Image & Publish'
-    command: bash scripts/build_and_publish.sh
+    command: bash .buildkite/scripts/build_and_publish.sh
     agents:
       queue: 'annalise-build'
 
   - wait
 
   - label: ':docker: Test/Audit/Monitor Docker Image for Vulnerabilities using Synk'
-    command: bash scripts/snyk_container_test.sh
+    command: bash .buildkite/scripts/snyk_container_test.sh
     agents:
       queue: 'annalise-build'
