@@ -12,6 +12,8 @@ echo "Set up AWS ..."
 aws configure set region "${AWS_REGION:-ap-southeast-2}"
 aws configure set output "json"
 
+printenv
+
 # shellcheck disable=SC2039
 IFS=',' read -ra NAMES <<< "$DB_NAMES"
 for db in "${NAMES[@]}"; do
