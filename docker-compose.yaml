@@ -1,18 +1,21 @@
-
-version: "2"
+version: "3.7"
 services:
   schemaspy:
     build:
       context: .
       dockerfile: Dockerfile
-    environment:
-      - DB=${DB}
     volumes:
       - ./output/${DB}:/output
     networks:
       - ${DB}_default
+    environment:
+      - DB_NAME=${DB_NAME:-groot}
+      - DB_HOST=${DB_HOST:-groot-db}
+      - DB_PORT=${DB_PORT:-5432}
+      - DB_USER=${DB_USER:-postgres}
+      - DB_PASSWORD=${DB_PASSWORD:-}
 
-networks: 
+networks:
   groot_default:
     external: true
   gateway_default:
@@ -21,4 +24,3 @@ networks:
     external: true
   heimdall_default:
     external: true
-      

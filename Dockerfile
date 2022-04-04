@@ -1,5 +1,3 @@
-
-   
 ARG GIT_BRANCH=local
 ARG GIT_REVISION=local
 
@@ -30,10 +28,10 @@ ENV JTDS_VERSION=$JTDS_VERSION
 
 RUN mkdir -p /tmp/drivers_inc
 WORKDIR /tmp/drivers_inc
-RUN curl -JLO http://search.maven.org/remotecontent?filepath=mysql/mysql-connector-java/$MYSQL_VERSION/mysql-connector-java-$MYSQL_VERSION.jar
-RUN curl -JLO http://search.maven.org/remotecontent?filepath=org/mariadb/jdbc/mariadb-java-client/$MARIADB_VERSION/mariadb-java-client-$MARIADB_VERSION.jar
-RUN curl -JLO http://search.maven.org/remotecontent?filepath=org/postgresql/postgresql/$POSTGRESQL_VERSION.jre7/postgresql-$POSTGRESQL_VERSION.jre7.jar
-RUN curl -JLO http://search.maven.org/remotecontent?filepath=net/sourceforge/jtds/jtds/$JTDS_VERSION/jtds-$JTDS_VERSION.jar
+RUN curl -JLO http://search.maven.org/remotecontent?filepath=mysql/mysql-connector-java/$MYSQL_VERSION/mysql-connector-java-$MYSQL_VERSION.jar && \
+    curl -JLO http://search.maven.org/remotecontent?filepath=org/mariadb/jdbc/mariadb-java-client/$MARIADB_VERSION/mariadb-java-client-$MARIADB_VERSION.jar && \
+    curl -JLO http://search.maven.org/remotecontent?filepath=org/postgresql/postgresql/$POSTGRESQL_VERSION.jre7/postgresql-$POSTGRESQL_VERSION.jre7.jar && \
+    curl -JLO http://search.maven.org/remotecontent?filepath=net/sourceforge/jtds/jtds/$JTDS_VERSION/jtds-$JTDS_VERSION.jar
 
 RUN mkdir -p /tmp/download
 WORKDIR /tmp/download
@@ -66,8 +64,9 @@ LABEL GIT_REVISION=$GIT_REVISION
 
 COPY --from=download /tmp/download/schema*.jar /usr/local/lib/schemaspy/
 COPY --from=download /tmp/drivers_inc /drivers_inc
-COPY docker/schemaspy.sh /usr/local/bin/schemaspy
-ADD schemaspy.properties /
+COPY ./docker/schemaspy.sh /usr/local/bin/schemaspy
+
+# TODO: Install the AWS CLI 
 
 RUN useradd java && \
     apt-get update && \
@@ -82,4 +81,13 @@ WORKDIR /
 
 ENV SCHEMASPY_DRIVERS=/drivers
 
-ENTRYPOINT ["/usr/local/bin/schemaspy"]
+# THESE WILL ALL BE OVERRIDDEN AT RUNTIME
+ENV DB_TYPE='pgsql11' \
+    DB_HOST='' \
+    DB_PORT=5432 \
+    DB_NAMES='' \
+    DB_USER='' \
+    DB_PASSWORD=''
+
+ENTRYPOINT [ "/usr/local/bin/schemaspy" ]
+CMD ["-t $DB_TYPE","-db $DB_NAME","-host $DB_HOST","-port $DB_PORT","-u $DB_USER","-p $DB_PASSWORD"]
