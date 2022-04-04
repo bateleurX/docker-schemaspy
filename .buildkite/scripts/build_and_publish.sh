@@ -14,6 +14,6 @@ fi
 
 docker build -t "${IMAGE_URI}" .
 
-if { [[ -n ${BUILDKITE_TAG} ]] && [[ ${BUILDKITE_BRANCH} == "${BUILDKITE_TAG}" ]];}  || [[ ${BUILDKITE_BRANCH} == "feat_devops" ]] || [[ ${BUILDKITE_BRANCH} == "main" ]] || [[ ${BUILDKITE_BRANCH} == *"release/"* ]]; then
+if { [[ -n ${BUILDKITE_TAG} ]] && [[ ${BUILDKITE_BRANCH} == "${BUILDKITE_TAG}" ]];}  || [[ ${BUILDKITE_BRANCH} == "feat/devops" ]] || [[ ${BUILDKITE_BRANCH} == "main" ]] || [[ ${BUILDKITE_BRANCH} == *"release/"* ]]; then
   docker push "${IMAGE_URI}"
 fi
