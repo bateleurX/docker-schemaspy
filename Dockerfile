@@ -70,9 +70,12 @@ COPY ./docker/schemaspy.sh /usr/local/bin/schemaspy
 
 RUN useradd java && \
     apt-get update && \
-    apt-get -y install --no-install-recommends unzip graphviz && \
+    apt-get -y install --no-install-recommends unzip graphviz curl jq && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
+    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
+    unzip awscliv2.zip && \
+    ./aws/install && \
     mkdir /output && \
     chown -R java /output
 
@@ -85,9 +88,11 @@ ENV SCHEMASPY_DRIVERS=/drivers
 ENV DB_TYPE='pgsql11' \
     DB_HOST='' \
     DB_PORT=5432 \
-    DB_NAMES='' \
     DB_USER='' \
     DB_PASSWORD=''
 
+RUN echo "SMOKE TESTS:" && \
+    aws --version
+
 ENTRYPOINT [ "/usr/local/bin/schemaspy" ]
-CMD ["-t $DB_TYPE","-db $DB_NAME","-host $DB_HOST","-port $DB_PORT","-u $DB_USER","-p $DB_PASSWORD"]
+CMD ["-t $DB_TYPE","-host $DB_HOST","-port $DB_PORT","-u $DB_USER","-p $DB_PASSWORD"]
