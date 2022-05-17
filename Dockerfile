@@ -68,7 +68,7 @@ WORKDIR /tmp/download
 RUN curl -JLO https://github.com/schemaspy/schemaspy/releases/download/v${SCHEMASPY_VERSION}/schemaspy-${SCHEMASPY_VERSION}.jar
 
 # Build images
-FROM openjdk:8u322-jre-slim-bullseye AS mysql
+FROM openjdk:8u332-jre-slim-bullseye AS mysql
 
 ARG GIT_BRANCH
 ARG GIT_REVISION
@@ -104,7 +104,7 @@ ENV SCHEMASPY_OUTPUT=/output
 
 ENTRYPOINT ["/usr/local/bin/schemaspy"]
 
-FROM openjdk:8u322-jre-slim-bullseye AS mariadb
+FROM openjdk:8u332-jre-slim-bullseye AS mariadb
 
 ARG GIT_BRANCH
 ARG GIT_REVISION
@@ -140,7 +140,7 @@ ENV SCHEMASPY_OUTPUT=/output
 
 ENTRYPOINT ["/usr/local/bin/schemaspy"]
 
-FROM openjdk:8u322-jre-slim-bullseye AS postgresql
+FROM openjdk:8u332-jre-slim-bullseye AS postgresql
 
 ARG GIT_BRANCH
 ARG GIT_REVISION
@@ -176,7 +176,7 @@ ENV SCHEMASPY_OUTPUT=/output
 
 ENTRYPOINT ["/usr/local/bin/schemaspy"]
 
-FROM openjdk:8u322-jre-slim-bullseye AS mysql-cjk
+FROM openjdk:8u332-jre-slim-bullseye AS mysql-cjk
 
 ARG GIT_BRANCH
 ARG GIT_REVISION
@@ -212,7 +212,7 @@ ENV SCHEMASPY_OUTPUT=/output
 
 ENTRYPOINT ["/usr/local/bin/schemaspy"]
 
-FROM openjdk:8u322-jre-slim-bullseye AS mariadb-cjk
+FROM openjdk:8u332-jre-slim-bullseye AS mariadb-cjk
 
 ARG GIT_BRANCH
 ARG GIT_REVISION
@@ -248,7 +248,7 @@ ENV SCHEMASPY_OUTPUT=/output
 
 ENTRYPOINT ["/usr/local/bin/schemaspy"]
 
-FROM openjdk:8u322-jre-slim-bullseye AS postgresql-cjk
+FROM openjdk:8u332-jre-slim-bullseye AS postgresql-cjk
 
 ARG GIT_BRANCH
 ARG GIT_REVISION
