@@ -3,6 +3,9 @@ name: Build Docker images
 on:
   release:
     types: [published]
+  push:
+    branches:
+      - temurin
 
 # for debugging
 #on:
