@@ -47,5 +47,5 @@ jobs:
           files: docker-bake-temurin.hcl
           push: true
           set: |
-            *.cache-to=type=gha,mode=max,compression=zstd
-            *.cache-from=type=gha,mode=max,compression=zstd
+            *.cache-to=type=gha,mode=max
+            *.cache-from=type=gha
