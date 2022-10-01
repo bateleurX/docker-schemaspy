@@ -41,6 +41,7 @@ jobs:
         name: Docker Buildx Bake
         uses: docker/bake-action@v2.2.0
         with:
+          files: docker-bake-temurin.hcl
           push: true
           set: |
             *.cache-to=type=gha,mode=max,compression=zstd
