@@ -3,9 +3,6 @@ name: Build Docker images
 on:
   release:
     types: [published]
-  push:
-    branches:
-      - temurin
 
 # for debugging
 #on:
@@ -41,10 +38,19 @@ jobs:
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2.1.0
       -
-        name: Docker Buildx Bake
+        name: Docker Buildx Bake(Temurin)
         uses: docker/bake-action@v2.3.0
         with:
           files: docker-bake-temurin.hcl
+          push: true
+          set: |
+            *.cache-to=type=gha,mode=max
+            *.cache-from=type=gha
+      -
+        name: Docker Buildx Bake(OpenJDK)
+        uses: docker/bake-action@v2.3.0
+        with:
+          files: docker-bake.hcl
           push: true
           set: |
             *.cache-to=type=gha,mode=max
