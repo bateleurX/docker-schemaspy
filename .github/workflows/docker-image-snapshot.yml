@@ -16,10 +16,6 @@ jobs:
         name: Checkout
         uses: actions/checkout@v3.1.0
 
-      - name: Extract Branch/Tag Names
-        run: |
-          echo "BRANCH=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
-          echo "TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
       -
         name: Login to DockerHub
         uses: docker/login-action@v2.1.0
