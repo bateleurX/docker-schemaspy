@@ -68,7 +68,7 @@ WORKDIR /tmp/download
 RUN curl -JLO https://schemaspy.org/schemaspy/schemaspy-${SCHEMASPY_VERSION}.jar
 
 # Build images
-FROM eclipse-temurin:17-jre-jammy AS mysql
+FROM eclipse-temurin:17.0.13_11-jre-jammy AS mysql
 
 ARG GIT_BRANCH
 ARG GIT_REVISION
@@ -104,7 +104,7 @@ ENV SCHEMASPY_OUTPUT=/output
 
 ENTRYPOINT ["/usr/local/bin/schemaspy"]
 
-FROM eclipse-temurin:17-jre-jammy AS mariadb
+FROM eclipse-temurin:17.0.13_11-jre-jammy AS mariadb
 
 ARG GIT_BRANCH
 ARG GIT_REVISION
@@ -140,7 +140,7 @@ ENV SCHEMASPY_OUTPUT=/output
 
 ENTRYPOINT ["/usr/local/bin/schemaspy"]
 
-FROM eclipse-temurin:17-jre-jammy AS postgresql
+FROM eclipse-temurin:17.0.13_11-jre-jammy AS postgresql
 
 ARG GIT_BRANCH
 ARG GIT_REVISION
@@ -176,7 +176,7 @@ ENV SCHEMASPY_OUTPUT=/output
 
 ENTRYPOINT ["/usr/local/bin/schemaspy"]
 
-FROM eclipse-temurin:17-jre-jammy AS mysql-cjk
+FROM eclipse-temurin:17.0.13_11-jre-jammy AS mysql-cjk
 
 ARG GIT_BRANCH
 ARG GIT_REVISION
@@ -212,7 +212,7 @@ ENV SCHEMASPY_OUTPUT=/output
 
 ENTRYPOINT ["/usr/local/bin/schemaspy"]
 
-FROM eclipse-temurin:17-jre-jammy AS mariadb-cjk
+FROM eclipse-temurin:17.0.13_11-jre-jammy AS mariadb-cjk
 
 ARG GIT_BRANCH
 ARG GIT_REVISION
@@ -248,7 +248,7 @@ ENV SCHEMASPY_OUTPUT=/output
 
 ENTRYPOINT ["/usr/local/bin/schemaspy"]
 
-FROM eclipse-temurin:17-jre-jammy AS postgresql-cjk
+FROM eclipse-temurin:17.0.13_11-jre-jammy AS postgresql-cjk
 
 ARG GIT_BRANCH
 ARG GIT_REVISION
